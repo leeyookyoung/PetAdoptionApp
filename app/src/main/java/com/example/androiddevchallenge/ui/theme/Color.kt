@@ -20,7 +20,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
 
-
 val teal200 = Color(0xFF03DAC5)
 val Green200 = Color(0xFFA5D6A7)
 val Green300 = Color(0xFF81C784)

@@ -1,5 +1,19 @@
+/*
+ * Copyright 2021 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.example.androiddevchallenge
-
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -127,7 +141,6 @@ fun Home(modifier: Modifier = Modifier, selectPet: (Long) -> Unit) {
 //                            }
 //                        )
 //                    }
-
                 }
 
                 item { Spacer(modifier = Modifier.height(32.dp)) }
@@ -271,9 +284,9 @@ fun ShelterPreview() {
     ShelterRow(shelterPets[0], false, onClick = {})
 }
 
-//@Preview
-//@Composable
-//fun MissedPetPreview() {
+// @Preview
+// @Composable
+// fun MissedPetPreview() {
 //    StaggeredVerticalGrid(
 //        maxColumnWidth = 220.dp,
 //        modifier = Modifier.padding(4.dp)
@@ -283,13 +296,13 @@ fun ShelterPreview() {
 //
 //        }
 //    }
-//}
-
+// }
 
 @Composable
 fun ShelterAnimalComp(
     shelterPet: ShelterPet,
-    expanded: Boolean, onClick: () -> Unit,
+    expanded: Boolean,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     ShelterRowSpacer(visible = expanded)
@@ -487,7 +500,6 @@ private fun ShelterRow(shelterPet: ShelterPet, expanded: Boolean, onClick: () ->
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 )
             }
-
         }
     }
     ShelterRowSpacer(visible = expanded)
@@ -664,7 +676,6 @@ fun MissingAnimalComp(
                 Spacer(modifier = Modifier.height(6.dp))
             }
 
-
 //            Text(
 //                text = "Rescue Information",
 //                textAlign = TextAlign.Justify,
@@ -691,8 +702,6 @@ fun MissingAnimalComp(
 //                text = "rescued: ${shelterPet.rescuedLocation}",
 //                textAlign = TextAlign.Justify
 //            )
-
         }
     }
 }
-

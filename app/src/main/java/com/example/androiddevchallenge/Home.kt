@@ -1,30 +1,66 @@
 package com.example.androiddevchallenge
 
-import androidx.compose.animation.*
+
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.animateColor
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDp
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.updateTransition
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
+import androidx.compose.material.TabPosition
+import androidx.compose.material.TabRow
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-import androidx.compose.runtime.*
+import androidx.compose.material.icons.filled.Female
+import androidx.compose.material.icons.filled.Male
+import androidx.compose.material.icons.filled.PriorityHigh
+import androidx.compose.material.icons.filled.Roofing
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.compositionLocalOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.vector.DefaultTintColor
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -62,7 +98,7 @@ fun Home(modifier: Modifier = Modifier, selectPet: (Long) -> Unit) {
         backgroundColor = backgroundColor,
     ) {
 
-        if(tabPage == TabPage.AnimalShelter) {
+        if (tabPage == TabPage.AnimalShelter) {
             LazyColumn(
 //                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 32.dp),
                 state = lazyListState,
@@ -75,7 +111,8 @@ fun Home(modifier: Modifier = Modifier, selectPet: (Long) -> Unit) {
                         shelterPet = shelterAnimal,
                         expanded = expandedId == shelterAnimal.id,
                         onClick = {
-                            expandedId = if (expandedId == shelterAnimal.id) null else shelterAnimal.id
+                            expandedId =
+                                if (expandedId == shelterAnimal.id) null else shelterAnimal.id
                         }
                     )
 //                    HorizontalLayout(
@@ -150,9 +187,9 @@ private fun HomeTabIndicator(
         tabPage,
         label = "Tab indicator"
     )
-    val indicatorLeft by transition.animateDp (
+    val indicatorLeft by transition.animateDp(
         transitionSpec = {
-            if(TabPage.AnimalShelter isTransitioningTo TabPage.Missing) {
+            if (TabPage.AnimalShelter isTransitioningTo TabPage.Missing) {
                 spring(stiffness = Spring.StiffnessVeryLow)
             } else {
                 spring(stiffness = Spring.StiffnessMedium)
@@ -164,7 +201,7 @@ private fun HomeTabIndicator(
     }
     val indicatorRight by transition.animateDp(
         transitionSpec = {
-            if(TabPage.AnimalShelter isTransitioningTo TabPage.Missing) {
+            if (TabPage.AnimalShelter isTransitioningTo TabPage.Missing) {
                 spring(stiffness = Spring.StiffnessMedium)
             } else {
                 spring(stiffness = Spring.StiffnessVeryLow)
@@ -355,7 +392,7 @@ fun ShelterAnimalComp(
 
 @Composable
 private fun getPetImage(pet: Pet): Painter {
-    val petImage: Painter = when(pet) {
+    val petImage: Painter = when (pet) {
         Pet.Dog -> painterResource(id = R.drawable.ic_dog)
         Pet.Cat -> painterResource(id = R.drawable.ic_cat)
         else -> painterResource(id = R.drawable.ic_rabbit)
@@ -410,7 +447,11 @@ private fun ShelterRow(shelterPet: ShelterPet, expanded: Boolean, onClick: () ->
                                 .size(20.dp)
                         )
                         Spacer(modifier = Modifier.width(4.dp))
-                        Image(painter = petImage, contentDescription = "", modifier = Modifier.size(20.dp))
+                        Image(
+                            painter = petImage,
+                            contentDescription = "",
+                            modifier = Modifier.size(20.dp)
+                        )
                     }
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
@@ -437,7 +478,7 @@ private fun ShelterRow(shelterPet: ShelterPet, expanded: Boolean, onClick: () ->
                 }
             }
 
-            if(expanded) {
+            if (expanded) {
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = shelterPet.character,
@@ -589,10 +630,10 @@ fun MissingAnimalComp(
             )
             Column(
                 modifier = Modifier
-                .constrainAs(col) {
-                    top.linkTo(breed.bottom)
-                    start.linkTo(image.start)
-                }
+                    .constrainAs(col) {
+                        top.linkTo(breed.bottom)
+                        start.linkTo(image.start)
+                    }
             ) {
                 Spacer(modifier = Modifier.height(4.dp))
                 Row {
@@ -622,7 +663,6 @@ fun MissingAnimalComp(
 
                 Spacer(modifier = Modifier.height(6.dp))
             }
-
 
 
 //            Text(

@@ -1,7 +1,7 @@
 package com.example.androiddevchallenge
 
 import androidx.compose.runtime.Immutable
-import androidx.compose.ui.res.stringResource
+
 
 enum class Pet {
     Dog, Cat, Rabbit, Etc

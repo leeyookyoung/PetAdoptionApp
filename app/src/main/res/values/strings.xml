@@ -10,4 +10,30 @@
       the License.
       -->
     <string name="app_name">AndroidDevChallenge</string>
+    <string name="label_back">Back</string>
+    <string name="pet_shelter">Pet Shelter</string>
+    <string name="missing">Missing</string>
+
+    <string-array name="animal_list_from_shelter">
+        <item>2 new packages arrived</item>
+        <item>DIY project recommendation</item>
+        <item>Festival next month</item>
+        <item>New flower seeds available</item>
+    </string-array>
+
+    <string-array name="animal_list_from_missing">
+        <item>dog1</item>
+        <item>cat1</item>
+        <item>cat2</item>
+        <item>dog2</item>
+    </string-array>
+    <string name="missedpet_desc">I am looking for my pet anxiously for my pet.
+When I came back home from work, there was no pet.
+Maybe my pet is not far from my house.
+If you have seen my pet, please contact me.
+The phone number is xxx-xxxx-xxxx.
+The characteristic of pets is that they follow people well and are not scared.</string>
+    <string name="character1">Cute and affectionate\nNot sensitive, but quiet\nEat well and sleep well.</string>
+    <string name="character2">Curious and active\nEat well and sleep well.</string>
+
 </resources>

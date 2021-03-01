@@ -7,16 +7,23 @@
 
 ## :scroll: Description
 <!--- Describe your app in one or two sentences -->
+This app is for AndroidDevChallenge Day1
+There are Pet Adoption and Rescue screens
 
 
 ## :bulb: Motivation and Context
 <!--- Optionally point readers to interesting parts of your submission. -->
 <!--- What are you especially proud of? -->
+I was motivated by PAWINHAND of Korea's Pet Adoption and Rescue service.
+it is also serviced by mobile application.
+Used and edited code from Jetpack Compose codelab that I learned for this challenge.
+(https://developer.android.com/courses/pathways/compose#codelab-https://developer.android.com/codelabs/jetpack-compose-basics)
 
 
 ## :camera_flash: Screenshots
 <!-- You can add more screenshots here if you like -->
 <img src="/results/screenshot_1.png" width="260">&emsp;<img src="/results/screenshot_2.png" width="260">
+<img src="/results/screenshot_3.png" width="260">&emsp;<img src="/results/screenshot_4.png" width="260">
 
 ## License
 ```

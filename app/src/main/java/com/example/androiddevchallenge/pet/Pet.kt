@@ -35,7 +35,7 @@ data class ShelterPet(
 )
 
 @Immutable
-data class MissedPet(
+data class MissingPet(
     val id: Long,
     val type: Pet,
     val sex: Char,
@@ -47,7 +47,7 @@ data class MissedPet(
 )
 
 object PetRepo {
-    fun getMissingPet(id: Long): MissedPet = missingPets.find { it.id == id }!!
+    fun getMissingPet(id: Long): MissingPet = missingPets.find { it.id == id }!!
 }
 
 val shelterPets = listOf(
@@ -186,7 +186,7 @@ val shelterPets = listOf(
 )
 
 val missingPets = listOf(
-    MissedPet(
+    MissingPet(
         id = 0,
         type = Pet.Cat,
         sex = 'f',
@@ -196,7 +196,7 @@ val missingPets = listOf(
         missedLocation = "Korea Seoul",
         thumbUrl = "https://ykladopt.imgix.net/13.jpg"
     ),
-    MissedPet(
+    MissingPet(
         id = 1,
         type = Pet.Cat,
         sex = 'm',
@@ -206,7 +206,7 @@ val missingPets = listOf(
         missedLocation = "Korea Seoul",
         thumbUrl = "https://ykladopt.imgix.net/14.jpg"
     ),
-    MissedPet(
+    MissingPet(
         id = 2,
         type = Pet.Cat,
         sex = 'f',
@@ -216,7 +216,7 @@ val missingPets = listOf(
         missedLocation = "Korea Seoul",
         thumbUrl = "https://ykladopt.imgix.net/15.jpg"
     ),
-    MissedPet(
+    MissingPet(
         id = 3,
         type = Pet.Dog,
         sex = 'm',
@@ -226,7 +226,7 @@ val missingPets = listOf(
         missedLocation = "Korea Seoul",
         thumbUrl = "https://ykladopt.imgix.net/16.jpg"
     ),
-    MissedPet(
+    MissingPet(
         id = 4,
         type = Pet.Dog,
         sex = 'f',
@@ -236,7 +236,7 @@ val missingPets = listOf(
         missedLocation = "Korea Seoul",
         thumbUrl = "https://ykladopt.imgix.net/17.jpg"
     ),
-    MissedPet(
+    MissingPet(
         id = 5,
         type = Pet.Cat,
         sex = 'm',
@@ -246,7 +246,7 @@ val missingPets = listOf(
         missedLocation = "Korea Seoul",
         thumbUrl = "https://ykladopt.imgix.net/18.jpg"
     ),
-    MissedPet(
+    MissingPet(
         id = 6,
         type = Pet.Cat,
         sex = 'f',
@@ -256,7 +256,7 @@ val missingPets = listOf(
         missedLocation = "Korea Seoul",
         thumbUrl = "https://ykladopt.imgix.net/19.jpg"
     ),
-    MissedPet(
+    MissingPet(
         id = 7,
         type = Pet.Dog,
         sex = 'm',

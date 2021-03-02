@@ -49,6 +49,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -83,10 +84,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
-import com.example.androiddevchallenge.ui.theme.Green300
-import com.example.androiddevchallenge.ui.theme.Green800
-import com.example.androiddevchallenge.ui.theme.Orange300
-import com.example.androiddevchallenge.ui.theme.Orange800
 import com.example.androiddevchallenge.utils.NetworkImage
 import kotlin.math.ceil
 
@@ -98,7 +95,7 @@ enum class TabPage {
 fun Home(modifier: Modifier = Modifier, selectPet: (Long) -> Unit) {
     var tabPage by remember { mutableStateOf(TabPage.Missing) }
     val lazyListState = rememberLazyListState()
-    val backgroundColor by animateColorAsState(if (tabPage == TabPage.AnimalShelter) Green300 else Orange300)
+    val backgroundColor by animateColorAsState(if (tabPage == TabPage.AnimalShelter) MaterialTheme.colors.primary else MaterialTheme.colors.secondary)
     var expandedId by remember { mutableStateOf<Long?>(null) }
 
     Scaffold(
@@ -227,7 +224,8 @@ private fun HomeTabIndicator(
     val color by transition.animateColor(
         label = "Border color"
     ) { page ->
-        if (page == TabPage.AnimalShelter) Green800 else Orange800
+        if (page == TabPage.AnimalShelter) MaterialTheme.colors.primaryVariant
+        else MaterialTheme.colors.secondaryVariant
     }
     Box(
         Modifier
@@ -261,7 +259,7 @@ private fun HomeTab(
     ) {
         Icon(
             tint = if (type == 1) compositionLocalOf { Color.Red }.current.copy(alpha = 0.8f)
-            else compositionLocalOf { Color.Black }.current.copy(alpha = 1.0f),
+            else compositionLocalOf { Color.Blue }.current.copy(alpha = 0.7f),
             imageVector = icon,
             contentDescription = null
         )
@@ -281,7 +279,7 @@ fun ShelterRowSpacer(visible: Boolean) {
 @Preview
 @Composable
 fun ShelterPreview() {
-    ShelterRow(shelterPets[0], false, onClick = {})
+    ShelterRow(shelterPets[0], true, onClick = {})
 }
 
 // @Preview
@@ -471,7 +469,7 @@ private fun ShelterRow(shelterPet: ShelterPet, expanded: Boolean, onClick: () ->
                         text = "Rescue Information",
                         textAlign = TextAlign.Justify,
                         style = MaterialTheme.typography.body2,
-                        color = Green800
+                        color = MaterialTheme.colors.primaryVariant
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
@@ -496,9 +494,16 @@ private fun ShelterRow(shelterPet: ShelterPet, expanded: Boolean, onClick: () ->
                 Text(
                     text = shelterPet.character,
                     textAlign = TextAlign.Justify,
-                    style = MaterialTheme.typography.body1,
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                    style = MaterialTheme.typography.subtitle2,
+                    modifier = Modifier.align(Alignment.Start)
                 )
+                Spacer(modifier = Modifier.height(4.dp))
+                Button(
+                    onClick = { },
+                    modifier = Modifier.align(Alignment.End)
+                ) {
+                    Text(text = "Adopt me!")
+                }
             }
         }
     }
@@ -596,7 +601,7 @@ fun StaggeredVerticalGrid(
 
 @Composable
 fun MissingAnimalComp(
-    missedPet: MissedPet,
+    missingPet: MissingPet,
     selectPet: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -606,13 +611,13 @@ fun MissingAnimalComp(
         elevation = 0.dp,
         shape = MaterialTheme.shapes.medium
     ) {
-        val petImage = getPetImage(missedPet.type)
+        val petImage = getPetImage(missingPet.type)
         val animalString = stringResource(id = R.string.pet_shelter)
         ConstraintLayout(
             modifier = Modifier
                 .clickable(
                     onClick = {
-                        selectPet(missedPet.id)
+                        selectPet(missingPet.id)
                     }
                 )
                 .semantics {
@@ -621,7 +626,7 @@ fun MissingAnimalComp(
         ) {
             val (image, breed, col) = createRefs()
             NetworkImage(
-                url = missedPet.thumbUrl,
+                url = missingPet.thumbUrl,
                 contentDescription = null,
                 modifier = Modifier
                     .aspectRatio(4f / 3f)
@@ -631,7 +636,7 @@ fun MissingAnimalComp(
                     }
             )
             Text(
-                text = missedPet.breed,
+                text = missingPet.breed,
                 style = MaterialTheme.typography.subtitle2,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
@@ -651,11 +656,11 @@ fun MissingAnimalComp(
                 Row {
                     Spacer(modifier = Modifier.width(8.dp))
                     Icon(
-                        tint = if (missedPet.sex == 'f') compositionLocalOf { Color.Red }.current.copy(
+                        tint = if (missingPet.sex == 'f') compositionLocalOf { Color.Red }.current.copy(
                             alpha = 0.7f
                         )
                         else compositionLocalOf { Color.Blue }.current.copy(alpha = 0.7f),
-                        imageVector = if (missedPet.sex == 'f') Icons.Default.Female else Icons.Default.Male,
+                        imageVector = if (missingPet.sex == 'f') Icons.Default.Female else Icons.Default.Male,
                         contentDescription = null,
                         modifier = Modifier
                             .size(20.dp)
@@ -668,40 +673,13 @@ fun MissingAnimalComp(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "${missedPet.regDate}",
+                        text = "${missingPet.regDate}",
                         textAlign = TextAlign.Justify
                     )
                 }
 
                 Spacer(modifier = Modifier.height(6.dp))
             }
-
-//            Text(
-//                text = "Rescue Information",
-//                textAlign = TextAlign.Justify,
-//                style = MaterialTheme.typography.body2,
-//                color = Green800,
-//                modifier = Modifier
-//                    .padding(horizontal = 16.dp)
-//                    .constrainAs(rescueInfo) {
-//                        top.linkTo(image.bottom)
-//                    }
-//            )
-//            Spacer(modifier = Modifier.height(4.dp))
-//            Text(
-//                text = "date: ${shelterPet.regDate}",
-//                textAlign = TextAlign.Justify
-//            )
-//            Spacer(modifier = Modifier.height(6.dp))
-//            Text(
-//                text = "current: ${shelterPet.location}",
-//                textAlign = TextAlign.Justify
-//            )
-//            Spacer(modifier = Modifier.height(6.dp))
-//            Text(
-//                text = "rescued: ${shelterPet.rescuedLocation}",
-//                textAlign = TextAlign.Justify
-//            )
         }
     }
 }

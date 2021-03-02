@@ -20,7 +20,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
 
-val teal200 = Color(0xFF03DAC5)
 val Green200 = Color(0xFFA5D6A7)
 val Green300 = Color(0xFF81C784)
 val Green500 = Color(0xFF4CAF50)
@@ -28,6 +27,17 @@ val Green700 = Color(0xFF388E3C)
 val Green800 = Color(0xFF2E7D32)
 val Orange300 = Color(0xffFFB74D)
 val Orange800 = Color(0xffEF6C00)
+val Amber50 = Color(0xFFFFF8E1)
+val Amber700 = Color(0xFFFFA000)
+val Black800 = Color(0xFF424242)
+
+val Brown100 = Color(0xFFD7CCC8)
+val Brown400 = Color(0xFF8D6E63)
+val Brown900 = Color(0xFF3E2723)
+
+val BlueGrey100 = Color(0xFFCFD8DC)
+val BlueGrey200 = Color(0xFFB0BEC5)
+val BlueGrey900 = Color(0xFF263238)
 
 @Composable
 fun Colors.compositedOnSurface(alpha: Float): Color {
